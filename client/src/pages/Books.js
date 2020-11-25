@@ -119,8 +119,8 @@ function Books() {
                       <h5 className="card-title">Author name(s)</h5>
                     </Col>
                     <Col size="md-6">
-                      <button style={{ float: "right", marginBottom: 10 }} className="btn btn-warning shadow m-3">View</button>
-                      <button style={{ float: "right", marginBottom: 10 }} className="btn btn-primary shadow m-3">Save</button>
+                      <button style={{ float: "right", marginBottom: 10 }} className="btn btn-primary shadow m-3">View</button>
+                      <button style={{ float: "right", marginBottom: 10 }} className="btn btn-success shadow m-3">Save</button>
                     </Col>
                   </Row>
 
