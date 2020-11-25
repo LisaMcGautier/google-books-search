@@ -4,6 +4,8 @@ import Hero from "../components/Hero";
 import Jumbotron from "../components/Jumbotron";
 import Search from "../components/Search";
 import Results from "../components/Results";
+import Footer from "../components/Footer";
+
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
@@ -177,6 +179,8 @@ function Books() {
             )}
         </Col>
       </Row>
+
+      <Footer />
     </Container>
   );
 }
