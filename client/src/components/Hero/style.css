@@ -1,0 +1,10 @@
+.hero {
+    height: 200px;
+    background-image: url("https://images.unsplash.com/photo-1512847930783-39fdc971594b?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTIxfHxib29rc3xlbnwwfHwwfA%3D%3D&auto=format&fit=crop&w=500&q=60"); 
+    clear: both; 
+    padding-top: 50px;
+    color:ivory;
+    text-shadow: 3px 3px 6px black; 
+    text-align: center;
+    margin-bottom: 10px
+}

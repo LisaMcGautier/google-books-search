@@ -1,15 +1,15 @@
 import React from "react";
+import "./style.css";
 
-function JumbotronResults({ children }) {
+function Search({ children }) {
   return (
     <div
-      style={{  clear: "both", paddingTop: 120, textAlign: "center" }}
       // style={{ height: 300, clear: "both", paddingTop: 120, textAlign: "center" }}
-      className="jumbotron"
+      className="search"
     >
       {children}
     </div>
   );
 }
 
-export default JumbotronResults;
+export default Search;
