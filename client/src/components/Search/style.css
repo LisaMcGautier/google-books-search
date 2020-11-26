@@ -1,9 +1,9 @@
 .search {
-    height: 150px; 
-    clear: both;
-    padding: 35px 25px;      
+    height: 175px; 
+    padding: 25px 25px;      
     text-align: left;
+    font-size: 30px;
     font-weight: bold;
-    background:  #a2d9e2;    
+    background:  #9e94a8;    
     margin-bottom: 10px
 }

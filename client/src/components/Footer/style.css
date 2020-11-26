@@ -1,6 +1,6 @@
 .footer {
-  min-height: 75px;
-  background: #e7f5f7;
+  min-height: 55px;
+  background:#f5eddb;
   position: relative;
 }
 
@@ -10,7 +10,7 @@
   left: 0;
   right: 0;
   padding: 5px;
-  background: #17a2b8;
-  color: white;
+  background: #413132;
+  color: #f5eddb;
   text-align: center
 }
