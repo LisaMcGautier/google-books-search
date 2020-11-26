@@ -2,3 +2,8 @@
     padding:25px;
     margin-bottom: 10px;
 }
+
+.navbar-dark .navbar-brand {
+    color: #f5eddb;
+    font-size: 35px;
+}
