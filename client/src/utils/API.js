@@ -1,20 +1,33 @@
 import axios from "axios";
 
+const BASEURL = "https://www.googleapis.com/books/v1/volumes?q=outlander";
+console.log("outlander");
+
 export default {
-  // Gets all books
+  // Gets all books; return all saved books as JSON
   getBooks: function() {
     return axios.get("/api/books");
   },
-  // Gets the book with the given id
-  getBook: function(id) {
-    return axios.get("/api/books/" + id);
+  
+  // Saves a book to the database
+  saveBook: function(bookData) {
+    return axios.post("/api/books", bookData);
   },
+
   // Deletes the book with the given id
   deleteBook: function(id) {
     return axios.delete("/api/books/" + id);
   },
-  // Saves a book to the database
-  saveBook: function(bookData) {
-    return axios.post("/api/books", bookData);
-  }
+
+  // Gets the book with the given id
+  // getBook: function(id) {
+  //   return axios.get("/api/books/" + id);
+  // },
+
+  
+
+  // `*` (get) - Will load your single HTML page in `client/build/index.html`. 
+  // Make sure you have this _after_ all other routes are defined.
+  
+  
 };
