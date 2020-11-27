@@ -8,3 +8,23 @@
     color: #f5eddb;
     font-size: 35px;
 }
+
+.search {
+    font-size: 25px;
+    color: #dcd5c5;
+    margin: 0px 20px;
+}
+
+.saved {
+    font-size: 25px;
+    color: #dcd5c5;
+    margin: 0px 20px;
+}
+
+/* .search .navbar-brand {
+    font-size: 25px;
+}
+
+.saved .navbar-brand {
+    font-size: 25px;
+} */

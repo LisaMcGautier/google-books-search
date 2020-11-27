@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import DeleteBtn from "../components/DeleteBtn";
 import Hero from "../components/Hero";
 import Jumbotron from "../components/Jumbotron";
-import Search from "../components/Search";
+import SearchArea from "../components/SearchArea";
 import Results from "../components/Results";
 import Footer from "../components/Footer";
 
@@ -68,12 +68,12 @@ function Books() {
             <h3>Search for and Save Books of Interest</h3>
           </Hero>
 
-          <Search> Book Search
+          <SearchArea> Book Search
             <form>
               <Input
                 onChange={handleInputChange}
                 name="title"
-                placeholder="Type the titl of a book  to search"
+                placeholder="Type the title of a book to search"
               />
 
               {/* <Input
@@ -95,7 +95,7 @@ function Books() {
               </FormBtn>
 
             </form>
-          </Search>
+          </SearchArea>
         </Col>
 
         <Col size="md-12">
