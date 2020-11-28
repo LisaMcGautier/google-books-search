@@ -1,10 +1,10 @@
 import React from "react";
 import "./style.css";
 
-import { Link, useLocation } from "react-router-dom";
+// import { Link, useLocation } from "react-router-dom";
 
 function Nav() {
-  const location = useLocation();
+  // const location = useLocation();
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark ">

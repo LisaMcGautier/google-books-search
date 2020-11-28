@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import DeleteBtn from "../components/DeleteBtn";
 import Hero from "../components/Hero";
-import Jumbotron from "../components/Jumbotron";
+// import Jumbotron from "../components/Jumbotron";
 import SearchArea from "../components/SearchArea";
 import Results from "../components/Results";
 import Footer from "../components/Footer";
-
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
@@ -17,10 +16,63 @@ function Books() {
   const [books, setBooks] = useState([])
   const [formObject, setFormObject] = useState({})
 
+
+
+  // Handles updating component state when the user types into the input field
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+    setFormObject({ ...formObject, [name]: value })
+  };
+
+
+
+  // When the form is submitted, use the API.saveBook method to save the book data
+  // Then reload books from the database
+  function handleFormSubmit(event) {
+    event.preventDefault();
+
+    console.log(formObject.title);
+
+    let query = formObject.title;
+      API.searchGoogle(query)
+      .then(response => {
+        console.log(response)
+        console.log(response.data)
+        console.log(response.data.items)
+        console.log(response.data.items[0])
+        console.log(response.data.items[0].id)
+        console.log(response.data.items[0].volumeInfo)
+        console.log(response.data.items[0].volumeInfo.title)
+        console.log(response.data.items[0].volumeInfo.subtitle)
+        console.log(response.data.items[0].volumeInfo.authors)
+        console.log(response.data.items[0].volumeInfo.description)
+        console.log(response.data.items[0].volumeInfo.imageLinks.smallThumbnail)
+        console.log(response.data.items[0].volumeInfo.infoLink)
+      })
+    
+        
+
+    
+
+    // if (formObject.title && formObject.author) {
+    //  API.searchGoogle({
+    //   API.saveBook({
+    //     title: formObject.title,
+    //     author: formObject.author,
+    //     synopsis: formObject.synopsis
+    //   })
+    //     .then(res => loadBooks())
+    //     .catch(err => console.log(err));
+    // }
+
+  };
+
   // Load all books and store them with setBooks
   useEffect(() => {
     loadBooks()
   }, [])
+
+
 
   // Loads all books and sets them to books
   function loadBooks() {
@@ -31,6 +83,8 @@ function Books() {
       .catch(err => console.log(err));
   };
 
+
+
   // Deletes a book from the database with a given id, then reloads books from the db
   function deleteBook(id) {
     API.deleteBook(id)
@@ -38,26 +92,11 @@ function Books() {
       .catch(err => console.log(err));
   }
 
-  // Handles updating component state when the user types into the input field
-  function handleInputChange(event) {
-    const { name, value } = event.target;
-    setFormObject({ ...formObject, [name]: value })
-  };
 
-  // When the form is submitted, use the API.saveBook method to save the book data
-  // Then reload books from the database
-  function handleFormSubmit(event) {
-    event.preventDefault();
-    if (formObject.title && formObject.author) {
-      API.saveBook({
-        title: formObject.title,
-        author: formObject.author,
-        synopsis: formObject.synopsis
-      })
-        .then(res => loadBooks())
-        .catch(err => console.log(err));
-    }
-  };
+
+
+
+
 
   return (
     <Container fluid>
@@ -90,6 +129,7 @@ function Books() {
               <FormBtn
                 disabled={!formObject.title}
                 onClick={handleFormSubmit}
+                //onSubmit={handleFormSubmit}
               >
                 Search
               </FormBtn>

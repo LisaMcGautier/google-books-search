@@ -1,24 +1,63 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
+import React, { useState, useEffect } from "react";
+import DeleteBtn from "../components/DeleteBtn";
 import Hero from "../components/Hero";
 // import Jumbotron from "../components/Jumbotron";
+import SearchArea from "../components/SearchArea";
 import Results from "../components/Results";
 import Footer from "../components/Footer";
 
 import API from "../utils/API";
+import { Link } from "react-router-dom";
+import { Col, Row, Container } from "../components/Grid";
+import { List, ListItem } from "../components/List";
+import { Input, TextArea, FormBtn } from "../components/Form";
 
-function Detail(props) {
-  const [book, setBook] = useState({})
+function Books() {
+  // Setting our component's initial state
+  const [books, setBooks] = useState([])
+  const [formObject, setFormObject] = useState({})
 
-  // When this component mounts, grab the book with the _id of props.match.params.id
-  // e.g. localhost:3000/books/599dcb67f0f16317844583fc
-  const { id } = useParams()
+  // Load all books and store them with setBooks
   useEffect(() => {
-    API.getBook(id)
-      .then(res => setBook(res.data))
-      .catch(err => console.log(err));
+    loadBooks()
   }, [])
+
+  // Loads all books and sets them to books
+  function loadBooks() {
+    API.getBooks()
+      .then(res =>
+        setBooks(res.data)
+      )
+      .catch(err => console.log(err));
+  };
+
+  // Deletes a book from the database with a given id, then reloads books from the db
+  function deleteBook(id) {
+    API.deleteBook(id)
+      .then(res => loadBooks())
+      .catch(err => console.log(err));
+  }
+
+  // Handles updating component state when the user types into the input field
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+    setFormObject({ ...formObject, [name]: value })
+  };
+
+  // When the form is submitted, use the API.saveBook method to save the book data
+  // Then reload books from the database
+  function handleFormSubmit(event) {
+    event.preventDefault();
+    if (formObject.title && formObject.author) {
+      API.saveBook({
+        title: formObject.title,
+        author: formObject.author,
+        synopsis: formObject.synopsis
+      })
+        .then(res => loadBooks())
+        .catch(err => console.log(err));
+    }
+  };
 
   return (
     <Container fluid>
@@ -29,19 +68,39 @@ function Detail(props) {
             <h3>Search for and Save Books of Interest</h3>
           </Hero>
 
-          {/* <Jumbotron>
-              <h1>
-                BOOK by AUTHOR
-                {book.title} by {book.author}
-              </h1>
-            </Jumbotron> */}
+          <SearchArea> Book Search
+            <form>
+              <Input
+                onChange={handleInputChange}
+                name="title"
+                placeholder="Type the title of a book to search"
+              />
 
+              {/* <Input
+                onChange={handleInputChange}
+                name="author"
+                placeholder="Author (required)"
+              />
+              <TextArea
+                onChange={handleInputChange}
+                name="synopsis"
+                placeholder="Synopsis (Optional)"
+              /> */}
+
+              <FormBtn
+                disabled={!formObject.title}
+                onClick={handleFormSubmit}
+              >
+                Search
+              </FormBtn>
+
+            </form>
+          </SearchArea>
         </Col>
 
         <Col size="md-12">
           <Results>
-            <h1>Saved Books</h1>
-            {/* <h1>Results</h1> */}
+            <h1>Results</h1>
 
             <Row>
               <Col size="md-12">
@@ -79,7 +138,7 @@ function Detail(props) {
                         <button style={{ float: "right", marginBottom: 10 }} className="btn btn-primary shadow m-3">Save</button> */}
 
                         <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p>Lorem impsum It beggared all description.  more in sorrow than in anger.  He has eaten me out of house and home.  Let me love him for that; and do you love him because I do. Look, here comes the Duke. The sixth age shifts Into the lean and slipper'd pantaloon, With spectacles on nose and pouch on side, His youthful hose, well sav'd, a world too wide For his shrunk shank; and his big manly voice, Turning again toward childish treble, pipes And whistles in his sound.  But look to it: Find out thy brother wheresoe'er he is; Seek him with candle; bring him dead or living Within this twelvemonth, or turn thou no more To seek a living in our territory.   Sir, I am a true labourer: I earn that I eat, get that I wear; owe no man hate, envy no man's happiness; glad of other men's good, content with my harm; and the greatest of my pride is to see my ewes graze and my lambs suck.</p>
+                        <p>Lorem impsum It beggared all description.  more in sorrow than in anger.  He has eaten me out of house and home.  Let me love him for that; and do you love him because I do. Look, here comes the Duke. The sixth age shifts Into the lean and slipper'd pantaloon, With spectacles on nose and pouch on side, His youthful hose, well sav'd, a world too wide For his shrunk shank; and his big manly voice, Turning again toward childish treble, pipes And whistles in his sound.  But look to it: Find out thy brother wheresoe'er he is; Seek him with candle; bring him dead or living Within this twelvemonth, or turn thou no more To seek a living in our territory.   Sir, I am a true labourer: I earn that I eat, get that I wear; owe no man hate, envy no man's happiness; glad of other men's good, content with my harm; and the greatest of my pride is to see my ewes graze and my lambs.</p>
                         {/* <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p> */}
                       </div>
                     </div>
@@ -98,7 +157,7 @@ function Detail(props) {
             </Row>
           </Results>
 
-          {/* {books.length ? (
+          {books.length ? (
             <List>
               {books.map(book => (
                 <ListItem key={book._id}>
@@ -114,35 +173,13 @@ function Detail(props) {
           ) : (
               <h3>No Results to Display</h3>
             )}
-        </Col> */}
-
-          {/* </Row>
-        <Row>
-          <Col size="md-10 md-offset-1">
-            <article>
-              <h1>Synopsis</h1>
-              <p>
-                {book.synopsis}
-              </p>
-            </article>
-          </Col>
-        </Row>
-        <Row> */}
-
-          {/* <Col size="md-2">
-          <Link to="/">← Back to Search</Link>
-          <Link to="/">← Back to Authors</Link>
-        </Col> */}
-
         </Col>
-
       </Row>
 
       <Footer />
-
     </Container>
   );
 }
 
 
-export default Detail;
+export default Books;
