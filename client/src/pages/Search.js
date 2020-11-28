@@ -9,7 +9,7 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import { Input, FormBtn } from "../components/Form";
 
 function Books() {
   // Setting our component's initial state
@@ -31,17 +31,17 @@ function Books() {
   function handleFormSubmit(event) {
     event.preventDefault();
 
-    console.log(formObject.title);
+    console.log(formObject.search);
 
-    let query = formObject.title;
-      API.searchGoogle(query)
+    let query = formObject.search;
+    API.searchGoogle(query)
       .then(response => {
-        console.log(response)
-        console.log(response.data)
+        // console.log(response)
+        // console.log(response.data)
         console.log(response.data.items)
-        console.log(response.data.items[0])
+        //console.log(response.data.items[0])
         console.log(response.data.items[0].id)
-        console.log(response.data.items[0].volumeInfo)
+        //console.log(response.data.items[0].volumeInfo)
         console.log(response.data.items[0].volumeInfo.title)
         console.log(response.data.items[0].volumeInfo.subtitle)
         console.log(response.data.items[0].volumeInfo.authors)
@@ -49,13 +49,27 @@ function Books() {
         console.log(response.data.items[0].volumeInfo.imageLinks.smallThumbnail)
         console.log(response.data.items[0].volumeInfo.infoLink)
       })
-    
-        
 
-    
+
+
+    // if (formObject.title) {
+    //
+    // if (response.data) {  ?????????????
+    //
+    //   API.saveBook({
+    //     title: response.data.items[i].volumeInfo.title,
+    //     subtitle: response.data.items[i].volumeInfo.subtitle,
+    //     authors: response.data.items[i].volumeInfo.authors,
+    //     description: response.data.items[i].volumeInfo.description,
+    //     image: response.data.items[i].volumeInfo.imageLinks.smallThumbnail,
+    //     link: response.data.items[i].volumeInfo.infoLink
+    //   })
+    //     .then(res => loadBooks())
+    //     .catch(err => console.log(err));
+    // }
+
 
     // if (formObject.title && formObject.author) {
-    //  API.searchGoogle({
     //   API.saveBook({
     //     title: formObject.title,
     //     author: formObject.author,
@@ -111,7 +125,7 @@ function Books() {
             <form>
               <Input
                 onChange={handleInputChange}
-                name="title"
+                name="search"
                 placeholder="Type the title of a book to search"
               />
 
@@ -127,9 +141,9 @@ function Books() {
               /> */}
 
               <FormBtn
-                disabled={!formObject.title}
+                disabled={!formObject.search}
                 onClick={handleFormSubmit}
-                //onSubmit={handleFormSubmit}
+              //onSubmit={handleFormSubmit}
               >
                 Search
               </FormBtn>
