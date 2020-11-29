@@ -16,15 +16,11 @@ function Books() {
   const [books, setBooks] = useState([])
   const [formObject, setFormObject] = useState({})
 
-
-
   // Handles updating component state when the user types into the input field
   function handleInputChange(event) {
     const { name, value } = event.target;
     setFormObject({ ...formObject, [name]: value })
   };
-
-
 
   // When the form is submitted, use the API.saveBook method to save the book data
   // Then reload books from the database
@@ -39,7 +35,6 @@ function Books() {
         // console.log(response)
         setBooks(response.data.items)
 
-
         // // console.log(response.data)
         // console.log(response.data.items)
         // //console.log(response.data.items[0])
@@ -53,7 +48,6 @@ function Books() {
         // console.log(response.data.items[0].volumeInfo.imageLinks.smallThumbnail)
         // console.log(response.data.items[0].volumeInfo.infoLink)
       })
-
 
 
     // if (formObject.title) {
@@ -85,11 +79,86 @@ function Books() {
 
   };
 
+  function saveThisBook(book) {
+
+    console.log(book);
+
+    console.log(book.id);
+    console.log(book.volumeInfo.title);
+    console.log(book.volumeInfo.subtitle);
+    console.log(book.volumeInfo.authors);
+    console.log(book.volumeInfo.description);
+    console.log(book.volumeInfo.imageLinks.smallThumbnail);
+    console.log(book.volumeInfo.infoLink);
+
+
+
+    // console.log(books[index].id);
+    // console.log(books[index].volumeInfo.title);
+    // console.log(books[index].volumeInfo.subtitle);
+    // console.log(books[index].volumeInfo.authors);
+    // console.log(books[index].volumeInfo.description);
+    // console.log(books[index].volumeInfo.imageLinks.smallThumbnail);
+    // console.log(books[index].volumeInfo.infoLink);
+
+    // console.log(bookData.id);
+    // console.log(bookData.volumeInfo.title);
+    // console.log(bookData.volumeInfo.subtitle);
+    // console.log(bookData.volumeInfo.authors);
+    // console.log(bookData.volumeInfo.description);
+    // console.log(bookData.volumeInfo.imageLinks.smallThumbnail);
+    // console.log(bookData.volumeInfo.infoLink);
+
+    // console.log(books.id);
+    // console.log(books.volumeInfo.title);
+    // console.log(books.volumeInfo.subtitle);
+    // console.log(books.volumeInfo.authors);
+    // console.log(books.volumeInfo.description);
+    // console.log(books.volumeInfo.imageLinks.smallThumbnail);
+    // console.log(books.volumeInfo.infoLink);
+
+    // API.saveBook({
+    //   googleID: books[index].id,
+    //   title: books[index].volumeInfo.title,
+    //   subtitle: books[index].volumeInfo.subtitle,
+    //   authors: books[index].volumeInfo.authors,
+    //   description: books[index].volumeInfo.description,
+    //   image: books[index].volumeInfo.imageLinks.smallThumbnail,
+    //   link: books[index].volumeInfo.infoLink
+    // })
+
+    // API.saveBook({
+    //   googleID : bookData.id,
+    //   title: bookData.title,
+    //   subtitle: bookData.subtitle,
+    //   authors: bookData.authors,
+    //   description: bookData.description,
+    //   image: bookData.image,
+    //   link: bookData.link
+    // })
+
+    API.saveBook({
+      googleID : book.id,
+      title: book.title,
+      subtitle: book.subtitle,
+      authors: book.authors,
+      description: book.description,
+      image: book.image,
+      link: book.link
+    })
+
+    
+
+    .then(console.log(book.title + " saved"))
+    .catch(err => console.log(err));
+    
+
+  }
+
   // Load all books and store them with setBooks
   useEffect(() => {
     loadBooks()
   }, [])
-
 
 
   // Loads all books and sets them to books
@@ -110,14 +179,10 @@ function Books() {
       .catch(err => console.log(err));
   }
 
-  
-  function visitBookPage(index) {
+
+  function viewBookPage(index) {
     window.open(books[index].volumeInfo.infoLink, "_blank");
   }
-
-
-
-
 
 
   return (
@@ -170,7 +235,8 @@ function Books() {
 
                 {books ? books.map((book, index) => {
                   return (
-                    <div className="card m-3 p-3" key={book.volumeInfo.title}>
+                    <div className="card m-3 p-3" key={book.id}>
+                      {/* <div className="card m-3 p-3" key={book.volumeInfo.title}> */}
                       <Row>
                         <Col size="md-6">
                           {/* <h5 className="card-title">Card title</h5> */}
@@ -180,8 +246,8 @@ function Books() {
                         </Col>
 
                         <Col size="md-6">
-                          <button onClick={() => visitBookPage(index)} style={{ float: "right", marginBottom: 10 }} className="btn btn-primary shadow m-3">View</button>
-                          <button style={{ float: "right", marginBottom: 10 }} className="btn btn-success shadow m-3">Save</button>
+                          <button onClick={() => viewBookPage(index)} style={{ float: "right", marginBottom: 10 }} className="btn btn-primary shadow m-3">View</button>
+                          <button onClick={() => saveThisBook(book)} style={{ float: "right", marginBottom: 10 }} className="btn btn-success shadow m-3">Save</button>
                         </Col>
                       </Row>
 
@@ -189,7 +255,13 @@ function Books() {
                       <div className="row no-gutters">
                         <div className="col-md-1 m-3">
                           {/* <div className="col-md-1"> */}
-                          <img src={book.volumeInfo.imageLinks.smallThumbnail} className="card-img" alt="book cover" />
+                          
+                          <img src={book.volumeInfo.imageLinks.smallThumbnail}
+
+                          // <img src={book.volumeInfo.imageLinks.thumbnail}
+                            // <img src={book.volumeInfo.imageLinks.smallThumbnail ? book.volumeInfo.imageLinks.smallThumbnail : "Book cover not available"} 
+
+                            className="card-img" alt="book cover" />
                         </div>
                         <div className="col-md-8">
                           <div className="card-body">
