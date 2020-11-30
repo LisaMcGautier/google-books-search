@@ -11,17 +11,7 @@ import API from "../utils/API";
 
 function Detail(props) {
   // const [book, setBook] = useState({})
-
   const [books, setBooks] = useState([])
-
-  // When this component mounts, grab the book with the _id of props.match.params.id
-  // e.g. localhost:3000/books/599dcb67f0f16317844583fc
-  // const { id } = useParams()
-  // useEffect(() => {
-  //   API.getBook(id)
-  //     .then(res => setBook(res.data))
-  //     .catch(err => console.log(err));
-  // }, [])
 
   // Load all books and store them with setBooks
   useEffect(() => {
@@ -38,14 +28,12 @@ function Detail(props) {
       .catch(err => console.log(err));
   };
 
-
-
   // Deletes a book from the database with a given id, then reloads books from the db
   function deleteBook(id) {
-    console.log(id)
-    // API.deleteBook(id)
-    //   .then(res => loadBooks())
-    //   .catch(err => console.log(err));
+    //console.log(id)
+    API.deleteBook(id)
+      .then(res => loadBooks())
+      .catch(err => console.log(err));
   }
 
   function viewBookPage(index) {
@@ -83,7 +71,7 @@ function Detail(props) {
 
                         <Col size="md-6">
                           {/* <button style={{ float: "right", marginBottom: 10 }} className="btn btn-success shadow m-3">Save</button> */}
-                          <button onClick={() => deleteBook(book.googleID)} style={{ float: "right", marginBottom: 10 }} className="btn btn-danger shadow m-3">Delete</button>
+                          <button onClick={() => deleteBook(book._id)} style={{ float: "right", marginBottom: 10 }} className="btn btn-danger shadow m-3">Delete</button>
                           <button onClick={() => viewBookPage(index)} style={{ float: "right", marginBottom: 10 }} className="btn btn-primary shadow m-3">View</button>
                         </Col>
                       </Row>

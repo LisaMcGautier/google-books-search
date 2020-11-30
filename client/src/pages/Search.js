@@ -13,7 +13,6 @@ import { Input, FormBtn } from "../components/Form";
 // import { List, ListItem } from "../components/List";
 // import Card from "../components/Card";
 
-
 function Books() {
   // Setting our component's initial state
   const [books, setBooks] = useState([])
@@ -41,13 +40,13 @@ function Books() {
   function saveThisBook(book) {
     //console.log(book);
 
-    console.log(book.id);
-    console.log(book.volumeInfo.title);
-    console.log(book.volumeInfo.subtitle);
-    console.log(book.volumeInfo.authors);
-    console.log(book.volumeInfo.description);
-    console.log(book.volumeInfo.imageLinks.smallThumbnail);
-    console.log(book.volumeInfo.infoLink);
+    // console.log(book.id);
+    // console.log(book.volumeInfo.title);
+    // console.log(book.volumeInfo.subtitle);
+    // console.log(book.volumeInfo.authors);
+    // console.log(book.volumeInfo.description);
+    // console.log(book.volumeInfo.imageLinks.smallThumbnail);
+    // console.log(book.volumeInfo.infoLink);
 
     API.saveBook({
       googleID: book.id,
@@ -61,13 +60,11 @@ function Books() {
 
       .then(console.log(book.volumeInfo.title + " saved"))
       .catch(err => console.log(err));
-
   }
 
   function viewBookPage(index) {
     window.open(books[index].volumeInfo.infoLink, "_blank");
   }
-
 
   return (
     <Container fluid>

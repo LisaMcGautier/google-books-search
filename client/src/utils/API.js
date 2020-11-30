@@ -9,8 +9,6 @@ export default {
   searchGoogle: function (query) {
     // console.log("API " + query);
     return axios.get(BASEURL + query);
-    // return axios.get("https://www.googleapis.com/books/v1/volumes?q=" + query);
-    // return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
   },
 
   // Gets all books; return all saved books as JSON
