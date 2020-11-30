@@ -13,12 +13,12 @@ function Detail(props) {
 
   // When this component mounts, grab the book with the _id of props.match.params.id
   // e.g. localhost:3000/books/599dcb67f0f16317844583fc
-  // const { id } = useParams()
-  // useEffect(() => {
-  //   API.getBook(id)
-  //     .then(res => setBook(res.data))
-  //     .catch(err => console.log(err));
-  // }, [])
+  const { id } = useParams()
+  useEffect(() => {
+    API.getBook(id)
+      .then(res => setBook(res.data))
+      .catch(err => console.log(err));
+  }, [])
 
   return (
     <Container fluid>
@@ -56,10 +56,9 @@ function Detail(props) {
                       <h5 className="card-title">Author name(s)</h5>
                     </Col>
 
-                    <Col size="md-6">                      
-                      {/* <button style={{ float: "right", marginBottom: 10 }} className="btn btn-success shadow m-3">Save</button> */}
-                      <button style={{ float: "right", marginBottom: 10 }} className="btn btn-danger shadow m-3">Delete</button>
+                    <Col size="md-6">
                       <button style={{ float: "right", marginBottom: 10 }} className="btn btn-primary shadow m-3">View</button>
+                      <button style={{ float: "right", marginBottom: 10 }} className="btn btn-success shadow m-3">Save</button>
                     </Col>
                   </Row>
 
