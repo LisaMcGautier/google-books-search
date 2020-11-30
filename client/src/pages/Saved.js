@@ -37,6 +37,7 @@ function Detail(props) {
         .catch(err => console.log(err));
     };
   
+    
   
     // Deletes a book from the database with a given id, then reloads books from the db
     function deleteBook(id) {
@@ -44,6 +45,11 @@ function Detail(props) {
       // API.deleteBook(id)
       //   .then(res => loadBooks())
       //   .catch(err => console.log(err));
+    }
+
+    function viewBookPage(index) {
+      //console.log(index)
+      window.open(books[index].link, "_blank");
     }
 
   return (
@@ -79,7 +85,7 @@ function Detail(props) {
                         <Col size="md-6">
                           {/* <button style={{ float: "right", marginBottom: 10 }} className="btn btn-success shadow m-3">Save</button> */}
                           <button onClick={() => deleteBook(book.googleID)} style={{ float: "right", marginBottom: 10 }} className="btn btn-danger shadow m-3">Delete</button>
-                          <button style={{ float: "right", marginBottom: 10 }} className="btn btn-primary shadow m-3">View</button>
+                          <button onClick={() => viewBookPage(index)} style={{ float: "right", marginBottom: 10 }} className="btn btn-primary shadow m-3">View</button>
                         </Col>
                       </Row>
 

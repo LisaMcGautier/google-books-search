@@ -45,6 +45,14 @@ function Books() {
 
     console.log(book);
 
+    console.log(book.id);
+    console.log(book.volumeInfo.title);
+    console.log(book.volumeInfo.subtitle);
+    console.log(book.volumeInfo.authors);
+    console.log(book.volumeInfo.description);
+    console.log(book.volumeInfo.imageLinks.smallThumbnail);
+    console.log(book.volumeInfo.infoLink);
+
     API.saveBook({
       googleID: book.id,
       title: book.volumeInfo.title,
@@ -124,7 +132,7 @@ function Books() {
                           {/* <img src={book.volumeInfo.imageLinks.smallThumbnail} */}
                             {/* <img src={book.volumeInfo.imageLinks.thumbnail} */}
 
-                            <img src={book.volumeInfo.imageLinks != undefined ? book.volumeInfo.imageLinks.smallThumbnail : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkUgR2D14HmBubZQcXXYJ8J3_wJ7qp-fIt7A&usqp=CAU"} 
+                            <img src={book.volumeInfo.imageLinks !== undefined ? book.volumeInfo.imageLinks.smallThumbnail : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkUgR2D14HmBubZQcXXYJ8J3_wJ7qp-fIt7A&usqp=CAU"} 
                             className="card-img" alt="book cover" />
                         </div>
                         <div className="col-md-8">

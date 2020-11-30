@@ -15,7 +15,7 @@ const bookSchema = new Schema({
 
   subtitle: { 
     type: String, 
-    required: true 
+    //required: true 
   },
 
   authors: [{ 
@@ -25,7 +25,7 @@ const bookSchema = new Schema({
 
   description: {
     type: String,
-    required: true 
+    //required: true 
   },
 
   image: {
