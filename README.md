@@ -1,10 +1,83 @@
 # Google Books Search
+No license selected
 
-### Overview
+## Description
+
+Leverage the power of the Google Books API to search for and save books to your reading list!
+
+## Deployment
+
+## Screenshots
+
+## Table of Contents
+
+* [Technologies](#technologies)
+
+* [Installation](#installation)
+
+* [Usage](#usage)
+
+* [License](#license)
+
+* [Contributing](#contributing)
+
+* [Tests](#tests)
+
+* [Questions](#questions)
+
+
+## Technologies
+
+The following technologies were used to create this project:
+
+```
+MERN: MongoDB, Express, React, Node
+```
+
+## Installation
+
+To install necessary dependencies, run the following command:
+
+```
+npm install
+```
+
+## Usage
+
+This app follows the MVC pattern and includes code from other similar projects.
+
+## License
+
+This project is licensed under the none license.
+
+## Contributing
+
+Contributions are not being accepted; feedback is welcome.
+
+## Tests
+
+To run tests, run the following command:
+
+```
+N/A
+```
+
+## Questions
+
+If you have any questions about the repo, open an issue or contact me directly at dlanodcm4517@gmail.com
+
+You can find more of my work at [GITHUBrepo](https://github.com/lisamcgautier)
+
+
+
+
+## Google Books Search
+
+#### Overview
 
 In this activity, you'll create a new React-based Google Books Search app. This assignment requires you to create React components, work with helper/util functions, and utilize React lifecycle methods to query and display books based on user searches. You'll also use Node, Express and MongoDB so that users can save books to review or purchase later.
 
-### Commits
+#### Commits
 
 Having an active and healthy commit history on GitHub is important for your future job search. It is also extremely important for making sure your work is saved in your repository. If something breaks, committing often ensures you are able to go back to a working version of your code.
 
@@ -22,11 +95,11 @@ Having an active and healthy commit history on GitHub is important for your futu
 
 * Deploy this application using Heroku, follow our guide on [deploying MERN applications to Heroku](../04-Important/MERNHerokuDeploy.md) to do so.
 
-### Submission on BCS
+#### Submission on BCS
 
 * **Please submit both the deployed Heroku link to your homework AND the link to the Github Repository!**
 
-### Instructions
+#### Instructions
 
 * This application requires at minimum 2 pages, check out the following mockup images for each page:
 
@@ -84,7 +157,7 @@ Having an active and healthy commit history on GitHub is important for your futu
 
 - - -
 
-### Bonus Live Updates to Saved Books
+#### Bonus Live Updates to Saved Books
 
 * Use React routing and [socket.io](http://socket.io) to create a notification or a component that triggers whenever a user saves an book. Your message should include the title of the saved book.
 
@@ -92,7 +165,7 @@ Having an active and healthy commit history on GitHub is important for your futu
 
   * [Socket.io NPM package](https://www.npmjs.com/package/socket.io)
 
-### Reminder: Submission on BCS
+#### Reminder: Submission on BCS
 
 * **This assignment must be deployed.** * Please submit both the deployed Heroku link to your homework AND the link to the Github Repository!
 
@@ -104,7 +177,7 @@ Attempt to complete homework assignment as described in instructions. If unable 
 
 - - -
 
-### Create a README.md
+#### Create a README.md
 
 Add a `README.md` to your repository describing the project. Here are some resources for creating your `README.md`. Here are some resources to help you along the way:
 
@@ -114,13 +187,13 @@ Add a `README.md` to your repository describing the project. Here are some resou
 
 - - -
 
-### Add To Your Portfolio
+#### Add To Your Portfolio
 
 After completing the homework please add the piece to your portfolio. Make sure to add a link to your updated portfolio in the comments section of your homework so the TAs can easily ensure you completed this step when they are grading the assignment. To receive an 'A' on any assignment, you must link to it from your portfolio.
 
 - - -
 
-### Hosting on Heroku
+#### Hosting on Heroku
 
 Now that we have a backend to our applications, we use Heroku for hosting. Please note that while **Heroku is free**, it will request credit card information if you have more than 5 applications at a time or are adding a database.
 
@@ -128,22 +201,22 @@ Please see [Heroku’s Account Verification Information](https://devcenter.herok
 
 - - -
 
-### One More Thing
+#### One More Thing
 
 If you have any questions about this project or the material we have covered, please post them in the community channels in slack so that your fellow developers can help you! If you're still having trouble, you can come to office hours for assistance from your instructor and TAs.
 
 **Good Luck!**
 
 
-## Create React Express App
+### Create React Express App
 
-### About This Boilerplate
+#### About This Boilerplate
 
 This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
 
 The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
 
-### Starting the app locally
+#### Starting the app locally
 
 Start by installing front and backend dependencies. While in this directory, run the following command:
 
@@ -161,6 +234,6 @@ npm start
 
 Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
 
-### Deployment (Heroku)
+#### Deployment (Heroku)
 
 To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
