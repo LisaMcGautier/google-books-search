@@ -9,7 +9,7 @@ import Footer from "../components/Footer";
 import API from "../utils/API";
 
 function Detail(props) {
-  const [book, setBook] = useState({})
+  // const [book, setBook] = useState({})
 
   const [books, setBooks] = useState([])
 
@@ -28,10 +28,11 @@ function Detail(props) {
     }, [])
 
     // Loads all books and sets them to books
-    function loadBooks() {
+    function loadBooks() {      
       API.getBooks()
         .then(res =>
           setBooks(res.data)
+          //console.log(res.data)
         )
         .catch(err => console.log(err));
     };
@@ -39,9 +40,10 @@ function Detail(props) {
   
     // Deletes a book from the database with a given id, then reloads books from the db
     function deleteBook(id) {
-      API.deleteBook(id)
-        .then(res => loadBooks())
-        .catch(err => console.log(err));
+      console.log(id)
+      // API.deleteBook(id)
+      //   .then(res => loadBooks())
+      //   .catch(err => console.log(err));
     }
 
   return (
@@ -64,19 +66,19 @@ function Detail(props) {
 
                 {books ? books.map((book, index) => {
                   return (
-                    <div className="card m-3 p-3" key={book.id}>
+                    <div className="card m-3 p-3" key={book.googleID}>
                       {/* <div className="card m-3 p-3" key={book.volumeInfo.title}> */}
                       <Row>
                         <Col size="md-6">
 
-                          <h4 className="card-title">{book.volumeInfo.title}</h4>
-                          <h6 className="card-title">{book.volumeInfo.subtitle ? book.volumeInfo.subtitle : ""}</h6>
-                          <h5 className="card-title">{book.volumeInfo.authors ? book.volumeInfo.authors.join(", ") : ""}</h5>
+                          <h4 className="card-title">{book.title}</h4>
+                          <h6 className="card-title">{book.subtitle ? book.subtitle : ""}</h6>
+                          <h5 className="card-title">{book.authors ? book.authors.join(", ") : ""}</h5>
                         </Col>
 
                         <Col size="md-6">
                           {/* <button style={{ float: "right", marginBottom: 10 }} className="btn btn-success shadow m-3">Save</button> */}
-                          <button style={{ float: "right", marginBottom: 10 }} className="btn btn-danger shadow m-3">Delete</button>
+                          <button onClick={() => deleteBook(book.googleID)} style={{ float: "right", marginBottom: 10 }} className="btn btn-danger shadow m-3">Delete</button>
                           <button style={{ float: "right", marginBottom: 10 }} className="btn btn-primary shadow m-3">View</button>
                         </Col>
                       </Row>
@@ -84,17 +86,19 @@ function Detail(props) {
                       <div className="row no-gutters">
                         <div className="col-md-1 m-3">
 
-                          <img src={book.volumeInfo.imageLinks.smallThumbnail}
+                          {/* <img src={book.volumeInfo.imageLinks.smallThumbnail} */}
+                            {/* <img src={book.volumeInfo.imageLinks.thumbnail} */}
 
-                            // <img src={book.volumeInfo.imageLinks.thumbnail}
-                            // <img src={book.volumeInfo.imageLinks.smallThumbnail ? book.volumeInfo.imageLinks.smallThumbnail : "Book cover not available"} 
+                            {/* <img src={book.volumeInfo.imageLinks != undefined ? book.volumeInfo.imageLinks.smallThumbnail : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkUgR2D14HmBubZQcXXYJ8J3_wJ7qp-fIt7A&usqp=CAU"} 
+                            className="card-img" alt="book cover" /> */}
 
+                            <img src={book.image} 
                             className="card-img" alt="book cover" />
                         </div>
                         <div className="col-md-8">
                           <div className="card-body">
 
-                            <p className="card-text">{book.volumeInfo.description}</p>
+                            <p className="card-text">{book.description}</p>
 
                           </div>
                         </div>
@@ -123,6 +127,7 @@ function Detail(props) {
           ) : (
               <h3>No Results to Display</h3>
             )} */}
+
         </Col>
       </Row>
 
