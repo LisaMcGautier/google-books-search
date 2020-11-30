@@ -11,6 +11,7 @@ import { Input, FormBtn } from "../components/Form";
 // import Jumbotron from "../components/Jumbotron";
 // import { Link } from "react-router-dom";
 // import { List, ListItem } from "../components/List";
+// import Card from "../components/Card";
 
 
 function Books() {
@@ -28,22 +29,17 @@ function Books() {
   // Then reload books from the database
   function handleFormSubmit(event) {
     event.preventDefault();
-
-    console.log(formObject.search);
-
+    //console.log(formObject.search);
     let query = formObject.search;
     API.searchGoogle(query)
       .then(response => {
         // console.log(response)
         setBooks(response.data.items)
-
       })
-
   };
 
   function saveThisBook(book) {
-
-    console.log(book);
+    //console.log(book);
 
     console.log(book.id);
     console.log(book.volumeInfo.title);
@@ -81,9 +77,12 @@ function Books() {
             <h1>(React) Google Books Search</h1>
             <h3>Search for and Save Books of Interest</h3>
           </Hero>
+        </Col>
 
+        <Col size="md-12">
           <SearchArea> Book Search
             <form>
+
               <Input
                 onChange={handleInputChange}
                 name="search"
@@ -92,7 +91,7 @@ function Books() {
 
               <FormBtn
                 disabled={!formObject.search}
-                onClick={handleFormSubmit}              
+                onClick={handleFormSubmit}
               >
                 Search
               </FormBtn>
@@ -104,17 +103,16 @@ function Books() {
         <Col size="md-12">
           <Results>
             <h1>Results</h1>
-
             <Row>
               <Col size="md-12">
-                
+
                 {books ? books.map((book, index) => {
                   return (
                     <div className="card m-3 p-3" key={book.id}>
                       {/* <div className="card m-3 p-3" key={book.volumeInfo.title}> */}
+
                       <Row>
                         <Col size="md-6">
-                          
                           <h4 className="card-title">{book.volumeInfo.title}</h4>
                           <h6 className="card-title">{book.volumeInfo.subtitle ? book.volumeInfo.subtitle : ""}</h6>
                           <h5 className="card-title">{book.volumeInfo.authors ? book.volumeInfo.authors.join(", ") : ""}</h5>
@@ -125,33 +123,32 @@ function Books() {
                           <button onClick={() => saveThisBook(book)} style={{ float: "right", marginBottom: 10 }} className="btn btn-success shadow m-3">Save</button>
                         </Col>
                       </Row>
-                      
+
                       <div className="row no-gutters">
-                        <div className="col-md-1 m-3">                          
+
+                        <div className="col-md-1 m-3">
 
                           {/* <img src={book.volumeInfo.imageLinks.smallThumbnail} */}
-                            {/* <img src={book.volumeInfo.imageLinks.thumbnail} */}
+                          {/* <img src={book.volumeInfo.imageLinks.thumbnail} */}
 
-                            <img src={book.volumeInfo.imageLinks !== undefined ? book.volumeInfo.imageLinks.smallThumbnail : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkUgR2D14HmBubZQcXXYJ8J3_wJ7qp-fIt7A&usqp=CAU"} 
+                          <img src={book.volumeInfo.imageLinks !== undefined ? book.volumeInfo.imageLinks.smallThumbnail : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkUgR2D14HmBubZQcXXYJ8J3_wJ7qp-fIt7A&usqp=CAU"}
                             className="card-img" alt="book cover" />
                         </div>
+
                         <div className="col-md-8">
                           <div className="card-body">
-
                             <p className="card-text">{book.volumeInfo.description}</p>
-
                           </div>
                         </div>
                       </div>
                     </div>)
                 }) : <h3>No Results to Display</h3>}
 
-
               </Col>
             </Row>
+
           </Results>
 
-          
         </Col>
       </Row>
 
